@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.625rem;
+    --background: 0 0% 100%;
+    --foreground: 267.935 30.6% 15.7%;
+    --card: 0 0% 100%;
+    --card-foreground: 267.935 30.6% 15.7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 267.935 30.6% 15.7%;
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 258.335 9.2% 96.9%;
+    --secondary-foreground: 267.935 30.6% 15.7%;
+    --muted: 247.858 33.3% 97.1%;
+    --muted-foreground: 272.586 10.5% 50.8%;
+    --accent: 247.896 63.6% 95.7%;
+    --accent-foreground: 265.755 19.2% 21.4%;
+    --destructive: 27.325 42.5% 56.5%;
+    --border: 255.508 7.7% 91.6%;
+    --input: 255.508 7.7% 91.6%;
+    --ring: 40.381 29.9% 67.8% / 0.1;
+    --chart-1: 40.381 29.9% 67.8%;
+    --chart-2: 35.096 23.2% 67.8%;
+    --chart-3: 226.154 11.6% 37.6%;
+    --chart-4: 88.346 14.3% 83.1%;
+    --chart-5: 58.996 16.1% 78.2%;
+    --sidebar: 247.858 33.3% 97.1%;
+    --sidebar-foreground: 267.935 30.6% 15.7%;
+    --sidebar-primary: 267.935 30.6% 15.7%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 247.896 63.6% 95.7%;
+    --sidebar-accent-foreground: 265.755 19.2% 21.4%;
+    --sidebar-border: 255.508 7.7% 91.6%;
+    --sidebar-ring: 40.381 29.9% 67.8% / 0.1;
+  }
+
+  .dark {
+    --background: 264.695 14.3% 9.8%;
+    --foreground: 247.896 85.7% 96.9%;
+    --card: 264.695 14.3% 9.8%;
+    --card-foreground: 247.896 85.7% 96.9%;
+    --popover: 264.695 14.3% 9.8%;
+    --popover-foreground: 247.896 85.7% 96.9%;
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 264.364 13.7% 20.0%;
+    --secondary-foreground: 247.896 85.7% 96.9%;
+    --muted: 264.364 13.7% 20.0%;
+    --muted-foreground: 264.542 8.3% 63.5%;
+    --accent: 264.364 13.7% 20.0%;
+    --accent-foreground: 247.896 85.7% 96.9%;
+    --destructive: 27.325 42.5% 56.5%;
+    --border: 264.364 13.7% 20.0%;
+    --input: 264.364 13.7% 20.0%;
+    --ring: 40.381 29.9% 67.8% / 0.1;
+    --chart-1: 40.381 29.9% 67.8%;
+    --chart-2: 35.096 23.2% 67.8%;
+    --chart-3: 226.154 11.6% 37.6%;
+    --chart-4: 88.346 14.3% 83.1%;
+    --chart-5: 58.996 16.1% 78.2%;
+    --sidebar: 264.695 14.3% 9.8%;
+    --sidebar-foreground: 247.896 85.7% 96.9%;
+    --sidebar-primary: 247.896 85.7% 96.9%;
+    --sidebar-primary-foreground: 264.695 14.3% 9.8%;
+    --sidebar-accent: 264.364 13.7% 20.0%;
+    --sidebar-accent-foreground: 247.896 85.7% 96.9%;
+    --sidebar-border: 264.364 13.7% 20.0%;
+    --sidebar-ring: 40.381 29.9% 67.8% / 0.1;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Onest', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  /* Custom heading styles */
+  .heading-xl {
+    font-family: Onest, sans-serif;
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  
+  .heading-lg {
+    font-family: Onest, sans-serif;
+    font-size: 2.25rem;
+    line-height: 1.111;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  
+  .heading-md {
+    font-family: Onest, sans-serif;
+    font-size: 1.875rem;
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  
+  .heading-sm {
+    font-family: Onest, sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.333;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  
+  /* Container and section utilities */
+  .container-padding-x {
+    padding-inline: 1.5rem;
+  }
+  
+  .section-padding-y {
+    padding-block: 6rem;
+  }
+  
+  .section-title-gap-xl {
+    gap: 1.5rem;
+  }
+  
+  .section-title-gap-lg {
+    gap: 1.25rem;
+  }
+  
+  .section-title-gap-md {
+    gap: 1.25rem;
+  }
+  
+  .section-title-gap-sm {
+    gap: 1rem;
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 64rem) {
+  .heading-xl {
+    font-size: 1.875rem;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+  
+  .heading-lg {
+    font-size: 1.875rem;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+  
+  .heading-md {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+  
+  .heading-sm {
+    font-size: 1.5rem;
+    line-height: 1.333;
+    font-weight: 700;
+  }
+  
+  .container-padding-x {
+    padding-inline: 1.5rem;
+  }
+  
+  .section-padding-y {
+    padding-block: 4rem;
+  }
+  
+  .section-title-gap-xl {
+    gap: 1rem;
+  }
+  
+  .section-title-gap-lg {
+    gap: 1rem;
+  }
+  
+  .section-title-gap-md {
+    gap: 1rem;
+  }
+  
+  .section-title-gap-sm {
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 80rem) {
+  .heading-xl {
+    font-family: Onest, sans-serif;
+    font-weight: 600;
+  }
+  
+  .heading-lg {
+    font-family: Onest, sans-serif;
+    font-weight: 600;
+  }
+  
+  .heading-md {
+    font-family: Onest, sans-serif;
+    font-weight: 600;
+  }
+  
+  .heading-sm {
+    font-family: Onest, sans-serif;
+    font-weight: 600;
+  }
+}
+

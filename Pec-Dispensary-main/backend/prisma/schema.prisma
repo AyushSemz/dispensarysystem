@@ -1,0 +1,162 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: [https://pris.ly/d/prisma-schema](https://pris.ly/d/prisma-schema)
+
+// Specifies how the Prisma Client should be generated.
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Defines the database connection. It reads the URL from the .env file.
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// --- ENUMS ---
+// Enums restrict a field to a specific set of allowed values.
+
+enum Role {
+  PATIENT
+  DOCTOR
+  ADMIN
+  PHARMACIST
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+// --- MODELS ---
+// Each model maps to a table in your database.
+
+model User {
+  id                      String            @id @default(uuid())
+  role                    Role
+  email                   String            @unique
+  password_hash           String?
+  full_name               String
+  phone                   String?
+  created_at              DateTime          @default(now())
+  updated_at              DateTime          @updatedAt
+  metadata                Json?             @default("{}")
+
+  // --- Relations for User ---
+  doctor_profile          DoctorProfile?
+  patient_profile         PatientProfile?
+  appointments_as_patient Appointment[]     @relation("PatientAppointments")
+  appointments_as_doctor  Appointment[]     @relation("DoctorAppointments")
+  visits_as_patient       Visit[]           @relation("PatientVisits")
+  visits_as_doctor        Visit[]           @relation("DoctorVisits")
+  remarks_by_doctor       Remark[]
+  feedbacks_by_patient    Feedback[]
+}
+
+model DoctorProfile {
+  user_id         String    @id
+  specialization  String?
+  registration_no String?
+  available_slots Json?
+  bio             String?
+  location        String?
+  created_at      DateTime  @default(now())
+
+  // One-to-one relation back to the User model
+  user            User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model PatientProfile {
+  user_id            String    @id
+  dob                DateTime? @db.Date
+  gender             String?
+  address            String?
+  emergency_contact  Json?
+  medical_history    Json?
+  consent_data_use   Boolean   @default(false)
+  created_at         DateTime  @default(now())
+
+  // One-to-one relation back to the User model
+  user               User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model Appointment {
+  id                String            @id @default(uuid())
+  patient_id        String
+  doctor_id         String?
+  appointment_time  DateTime
+  duration_minutes  Int               @default(15)
+  status            AppointmentStatus @default(SCHEDULED)
+  reason            String?
+  created_at        DateTime          @default(now())
+  updated_at        DateTime          @updatedAt
+
+  patient           User              @relation("PatientAppointments", fields: [patient_id], references: [id])
+  doctor            User?             @relation("DoctorAppointments", fields: [doctor_id], references: [id])
+  visit             Visit?
+}
+
+model Visit {
+  id               String    @id @default(uuid())
+  appointment_id   String?   @unique
+  patient_id       String
+  doctor_id        String
+  visit_time       DateTime  @default(now())
+  diagnosis_code   String?
+  diagnosis_text   String?
+  prescription     Json?
+  follow_up_reco   String?
+  created_at       DateTime  @default(now())
+
+  appointment      Appointment? @relation(fields: [appointment_id], references: [id])
+  patient          User         @relation("PatientVisits", fields: [patient_id], references: [id])
+  doctor           User         @relation("DoctorVisits", fields: [doctor_id], references: [id])
+  remarks          Remark[]
+  feedbacks        Feedback[]
+}
+
+model Remark {
+  id            String    @id @default(uuid())
+  visit_id      String
+  doctor_id     String
+  raw_text      String
+  symptom_tags  String[]
+  processed     Boolean   @default(false)
+  nlp_result_id String?   @unique
+  created_at    DateTime  @default(now())
+
+  visit         Visit      @relation(fields: [visit_id], references: [id])
+  doctor        User       @relation(fields: [doctor_id], references: [id])
+  nlp_result    NlpResult? @relation(fields: [nlp_result_id], references: [id])
+}
+
+model Feedback {
+  id            String    @id @default(uuid())
+  visit_id      String
+  patient_id    String
+  rating        Int?
+  comments      String?
+  processed     Boolean   @default(false)
+  nlp_result_id String?   @unique
+  created_at    DateTime  @default(now())
+
+  visit         Visit      @relation(fields: [visit_id], references: [id])
+  patient       User       @relation(fields: [patient_id], references: [id])
+  nlp_result    NlpResult? @relation(fields: [nlp_result_id], references: [id])
+}
+
+model NlpResult {
+  id                String    @id @default(uuid())
+  source_type       String
+  source_id         String    // This would be the id of the remark or feedback
+  detected_symptoms String[]
+  detected_diseases String[]
+  entities          Json?
+  confidence        Json?
+  language          String?
+  processed_at      DateTime  @default(now())
+
+  Remark            Remark?
+  Feedback          Feedback?
+}
