@@ -1,103 +1,99 @@
-﻿#🏥 PEC Dispensary Management System
-NLP-Based Feedback Analysis & Outbreak Detection
-📌 Overview
+# 🏥 PEC Dispensary Management System  
+### NLP-Based Feedback Analysis & Outbreak Detection
 
-This project is an intelligent dispensary management system that integrates Natural Language Processing (NLP) and Neural Networks to streamline healthcare services and extract insights from patient feedback.
+---
 
-It enables automated symptom extraction, sentiment analysis, and outbreak detection, helping institutions make data-driven healthcare decisions.
+## 📌 Overview
+This project is an intelligent dispensary management system that integrates **Natural Language Processing (NLP)** and **Neural Networks** to streamline healthcare services and extract insights from patient feedback.
 
-🚀 Features
+It enables automated **symptom extraction, sentiment analysis, and outbreak detection**, helping institutions make **data-driven healthcare decisions**.
 
-🗓️ Appointment Management System
+---
 
-💬 Patient Feedback Analysis using NLP
+## 🚀 Features
+- 🗓️ Appointment Management System  
+- 💬 Patient Feedback Analysis using NLP  
+- 🧠 Multi-task Learning with BERT  
+- 📊 Aspect-Based Sentiment Analysis (ABSA)  
+- 🦠 Symptom Extraction (Multi-label classification)  
+- ⚠️ Outbreak Detection (Z-score, EWMA, CUSUM)  
+- 📈 Real-time Dashboard & Analytics  
 
-🧠 Multi-task Learning with BERT
+---
 
-📊 Aspect-Based Sentiment Analysis (ABSA)
+## 🧠 Tech Stack
 
-🦠 Symptom Extraction (Multi-label classification)
+| Layer        | Technology |
+|-------------|-----------|
+| Frontend     | Next.js / React |
+| Backend      | Node.js |
+| Model API    | FastAPI |
+| ML Framework | PyTorch + HuggingFace Transformers |
+| Database     | Supabase / Prisma |
 
-⚠️ Outbreak Detection (Z-score, EWMA, CUSUM)
+---
 
-📈 Real-time Dashboard & Analytics
+## ⚙️ How It Works
+1. User submits feedback via web interface  
+2. Backend sends data to NLP model  
+3. BERT-based model performs:
+   - Symptom detection  
+   - Sentiment classification  
+   - Aspect-based sentiment analysis  
+4. Results are stored and visualized on dashboard  
+5. Outbreak detection engine analyzes trends and triggers alerts  
 
-🧠 Tech Stack
+---
 
-Frontend: Next.js / React
+## 🧪 Model Details
+- **Architecture:** BERT + Multi-Task Learning  
+- **Tasks:**
+  - Sentiment Classification *(Positive / Neutral / Negative)*  
+  - Symptom Extraction *(Multi-label)*  
+  - Aspect-Based Sentiment Analysis  
 
-Backend: Node.js
+- **Accuracy:** ~74% on test dataset  
 
-Model API: FastAPI
+---
 
-ML Framework: PyTorch + HuggingFace Transformers
+## 📊 Outbreak Detection
+Uses statistical anomaly detection techniques:
+- Z-Score Thresholding  
+- EWMA (Exponentially Weighted Moving Average)  
+- CUSUM  
 
-Database: Supabase / Prisma
+➡️ Detects abnormal symptom spikes and generates alerts.
 
-⚙️ How It Works
+---
 
-User submits feedback via web interface
+## 📁 Project Structure
+frontend/ # React / Next.js UI
+backend/ # Node.js API
+model/ # NLP Model (FastAPI + BERT)
+database/ # Schema & storage configs
+docs/ # Reports & documentation
 
-Backend sends data to NLP model
+---
+---
 
-BERT-based model performs:
+## 🔧 Setup Instructions
 
-Symptom detection
-
-Sentiment classification
-
-Aspect-based sentiment analysis
-
-Results are stored and visualized on dashboard
-
-Outbreak detection engine analyzes trends and triggers alerts
-
-🧪 Model Details
-
-Architecture: BERT + Multi-Task Learning
-
-Tasks:
-
-Sentiment Classification (Positive / Neutral / Negative)
-
-Symptom Extraction (Multi-label)
-
-Aspect-Based Sentiment Analysis
-
-Accuracy: ~74% on test dataset
-
-📊 Outbreak Detection
-
-Uses statistical anomaly detection:
-
-Z-Score Thresholding
-
-EWMA (Exponential Moving Average)
-
-CUSUM
-
-Detects abnormal symptom spikes and generates alerts.
-
-📁 Project Structure
-├── frontend/        # React / Next.js UI
-├── backend/         # Node.js API
-├── model/           # NLP Model (FastAPI + BERT)
-├── database/        # Schema & storage configs
-└── docs/            # Reports & documentation
-🔧 Setup Instructions
-1. Clone Repository
-git clone https://github.com/your-username/pec-dispensary.git
-cd pec-dispensary
-2. Install Dependencies
+### 1️⃣ Clone Repository
+git clone https://github.com/AyushSemz/dispensarysystem.git
+cd dispensarysystem
+2️⃣ Install Dependencies
 # frontend
-cd frontend && npm install
+cd frontend
+npm install
 
 # backend
-cd ../backend && npm install
+cd ../backend
+npm install
 
 # model
-cd ../model && pip install -r requirements.txt
-3. Run Services
+cd ../model
+pip install -r requirements.txt
+3️⃣ Run Services
 # start frontend
 npm run dev
 
@@ -108,10 +104,10 @@ node server.js
 uvicorn main:app --reload
 📈 Future Improvements
 
-Real-time model retraining with new feedback
+🔁 Real-time model retraining with new feedback
 
-Disease prediction using symptom correlation
+🧬 Disease prediction using symptom correlation
 
-Multilingual NLP support
+🌐 Multilingual NLP support
 
-Integration with wearable health data
+⌚ Integration with wearable health data
